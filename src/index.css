@@ -1,0 +1,11 @@
+@font-face {
+  font-family: '8-Bit Madness';
+  src:  url('./8-BitMadness.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+

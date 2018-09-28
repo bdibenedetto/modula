@@ -1,0 +1,22 @@
+.sequencer {
+  margin: auto 20%;
+  display: flex;
+}
+.sequencer__panel {
+  display: flex;
+}
+.sequencer__panel__steps {
+  display: flex;
+}
+.sequencer__panel__steps .step{
+  display: flex;
+  flex-direction: column;
+  width: 30px;
+}
+.sequencer__panel__steps .step span.display {
+  font-family: '8-Bit Madness';
+}
+.sequencer__panel__steps .step input{
+  -webkit-appearance: slider-vertical;
+  height: 300px;
+}
