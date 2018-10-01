@@ -17,7 +17,7 @@ class Core extends Component {
     const repeat = (time) => {
       let note = this.props.notes[index % this.props.notes.length]
       this.props.onStepUpdate(index % this.props.notes.length)
-      this.state.voice.triggerAttackRelease(note, '8n', time)
+      this.state.voice.triggerAttackRelease(note.getValueAtTime().toFrequency(), '8n', time)
       index++
     }
   }

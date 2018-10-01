@@ -2,12 +2,16 @@ import React from 'react';
 import Core from './core'
 import Component from '@reactions/component'
 import Tone from 'tone'
+import Slider from '../../Parts/Slider'
 import './style.css';
 
-
+const baseFq = Tone.Frequency(440)
 const Synth = () => (
   <div className="sequencer"> <Component
-    initialState={{ notes: [440, 440, 440, 440, 440, 440, 440, 440], step: null }
+    initialState={{
+      notes: [new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq),
+      new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq)], step: null
+    }
     }
     didMount={({ setState }) => {
       console.log('mounted')
@@ -33,17 +37,13 @@ const Synth = () => (
                     <div className="step" key={ni}>
                       <span className="display">
 
-                        {Tone.Frequency(n).toNote()}
+                        {n.getValueAtTime().toNote()}
                       </span>
-                      <input type="range" min={32} max={642} value={n} range={1}
-                        onChange={({ target }) =>
-                          setState({
-                            notes: state.notes
-                              .map((note, noteIndex) => ni === noteIndex ?
-                                target.value
-                                : note)
-                          })
-                        }
+
+                      <Slider
+                        min={32} max={642} value={n}
+                        freq={n}
+                        value={n}
                       />
 
                       {ni === state.step ? '' : ''}
