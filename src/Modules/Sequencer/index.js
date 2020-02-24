@@ -7,7 +7,8 @@ import './style.css';
 
 const baseFq = Tone.Frequency(440)
 const Synth = () => (
-  <div className="sequencer"> <Component
+  <div className="sequencer"> 
+  <Component
     initialState={{
       notes: [new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq),
       new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq), new Tone.Signal(baseFq)], step: null
@@ -23,34 +24,45 @@ const Synth = () => (
           ({ play, pause, stop, transport }) => {
             return (
 
-              <div className="sequencer__panel">
-                <div className="sequencer__panel__control" >
-                  {state.step + 1}
 
-                  <button type="button" onClick={play} >Play</button>
-                  <button type="button" onClick={pause} >Pause</button>
-                  <button type="button" onClick={stop} >Stop</button>
-                </div>
-                <div className="sequencer__panel__steps" >
+              <Component    
+                didMount={({ setState }) => {
+                  console.log('mounted ev')
+                }}
+              >
+              {({ state:eventState, setState: setEventState }) => (
+                  <div className="sequencer__panel">
+                    <div className="sequencer__panel__control" >
+                      {state.step + 1}
 
-                  {state.notes.map((n, ni) => (
-                    <div className="step" key={ni}>
-                      <span className="display">
-
-                        {n.getValueAtTime().toNote()}
-                      </span>
-
-                      <Slider
-                        min={32} max={642} value={n}
-                        freq={n}
-                        value={n}
-                      />
-
-                      {ni === state.step ? '' : ''}
+                      <button type="button" onClick={play} >Play</button>
+                      <button type="button" onClick={pause} >Pause</button>
+                      <button type="button" onClick={stop} >Stop</button>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="sequencer__panel__steps" >
+
+                      {state.notes.map((n, ni) => (
+                        <div className="step" key={ni}>
+                          <span className="display">
+
+                            {n.getValueAtTime().toNote()}
+                          </span>
+
+                          <Slider
+                            min={32} 
+                            max={642}
+                            freq={n}
+                            value={n}
+                          />
+
+                          {ni === state.step ? '' : ''}
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+              )}
+        </Component>
             )
           }
         }
@@ -58,7 +70,8 @@ const Synth = () => (
 
     )
     }
-  </Component></div>
+  </Component>
+  </div>
 )
 
 export default Synth;

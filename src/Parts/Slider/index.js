@@ -2,39 +2,43 @@ import React, { Component } from 'react';
 import noUiSlider from 'nouislider'
 import 'nouislider/distribute/nouislider.css'
 import './style.css'
-import Tone from 'tone'
 
 class Slider extends Component {
-  constructor() {
-    super()
-  }
 
   componentDidMount() {
-    const defaultValue = this.props.value.value.toFrequency()
+    const defaultValue = this.props.value;
     let verticalSlider = this.refs.sliderControl
 
     let slider = noUiSlider.create(verticalSlider, {
-      start: defaultValue,
-      step: 2,
+      start: defaultValue || 0,
+      step: this.props.step || 10,
       orientation: 'vertical',
+      direction: this.props.direction || 'ltr' ,
       range: {
+        'max': this.props.max,
         'min': this.props.min,
-        'max': this.props.max
-      }
+      },
+      pips: {
+        mode: 'range',
+        density: 10
+    }
     });
 
 
-    slider.on('change', e => {
+    slider.on('update', e => {
       if (e !== defaultValue) {
-        const change = Number(e[0].split('.')[0])
-        this.props.value.setValueAtTime(Tone.Frequency(change))
+        this.props.onChange(e)
       }
     });
 
   }
 
   render() {
-    return <div ref="sliderControl" />
+
+    return <div className="slider-container">
+    <div ref="sliderControl" />
+    <label className="slider-container__label">{this.props.label||'noname'}</label>
+    </div>
   }
 
 }

@@ -1,44 +1,44 @@
 import React from 'react';
-import Core from './core'
-import Component from '@reactions/component'
-import Tone from 'tone'
 import './style.css';
+import Slider from '../../Parts/Slider'
+import Core from './core'
+import Scope from '../Scope'
+import Scope2 from '../Scope2'
 
+export class Oscilator extends React.Component {
+  constructor() {
+    super()
+    this.core = new Core()
+  }
 
-const Oscilator = () => (
-  <div className="oscilator"> <Component
-    initialState={{ pitch: 'A1' }}
-    didMount={({ setState }) => {
-      console.log('mounted')
-    }}
-  >
-    {({ state, setState }) => (
-      <Core  >
-        {
-          () => {
-            return (
+  render() {
+    console.log('this',this)
+    let { start, frequency, setFrequency, setVolume,osc} = this.core
+    return (
+      <div className="oscilator__panel">
+        <div className="oscilator__panel__control" >
+        <button onClick={start}>start</button>
+        <Slider
+          label="Frequency"
+          min={1} max={1000}
+          step={0.001} 
+          direction="rtl"  
+          onChange={setFrequency}
+          />
 
-              <div className="oscilator__panel">
-                <div className="oscilator__panel__control" >
-                  <input type="range" min={32} max={642} value={Tone.Frequency(state.pitch)}
-                    onChange={({ target }) =>
-                      setState({
-                        pitch:
-                          Tone.Frequency(target.value).toNote()
-                      })
-                    }
-                  />
-                </div>
+        <Slider
+          label="Volume"
+            min={0} direction="rtl" max={1}
+            step={0.001} onChange={setVolume}
+          />
+        {/* <Scope input={osc}/> */}
+        <Scope2 input={osc}/>
+    
+        </div>
 
-              </div>
-            )
-          }
-        }
-      </Core>
-
+      </div>
     )
-    }
-  </Component></div>
-)
+  }
+}
 
 export default Oscilator;

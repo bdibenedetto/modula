@@ -1,12 +1,10 @@
 .noUi-vertical {
-  height: 200px;
+  height: 100px;
 }
 
 .noUi-vertical .noUi-handle {
   width: 25px;
-    height: 0px;
-    left: -5px;
-    top: -5px;
+    height: 12px;
     margin: 2px 1px;
     padding: 2px;
     outline: none;
@@ -14,4 +12,9 @@
 .noUi-vertical .noUi-handle::after,
 .noUi-vertical .noUi-handle::before {
   display: none;
+}
+
+.slider-container {
+  width: 50px;
+  margin: 20px;
 }

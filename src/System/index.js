@@ -1,26 +1,18 @@
 import React from 'react';
-import Sequencer from '../Modules/Sequencer'
+// import Sequencer from '../Modules/Sequencer'
 import Oscilator from '../Modules/Oscilator'
-import Component from '@reactions/component'
+// import Scope from '../Modules/Scope'
 
 
 const System = () => (
-  <div className="system"> <Component
-    initialState={{}}
-    didMount={({ setState }) => {
-      console.log('mounted')
-    }}
-  >
-    {({ state, setState }) => (
+  <div className="system"> 
       <React.Fragment>
 
-        <Sequencer />
+        {/* <Sequencer /> */}
+        {/* <Scope /> */}
         <Oscilator />
       </React.Fragment>
-
-    )
-    }
-  </Component></div>
+</div>
 )
 
 export default System;

@@ -1,0 +1,17 @@
+.oscilator__panel{
+  padding: 50px;
+  margin: 20px;
+  height: 250px;
+  padding-left: 20px;
+}
+.oscilator__panel__control{
+  display: flex;
+}
+
+.oscilator__panel__control button{
+  height: 20px;
+}
+.slider-container__label {
+  margin-left: -20px;
+  user-select: none;
+}
