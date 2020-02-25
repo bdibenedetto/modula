@@ -1,6 +1,6 @@
 import React from 'react';
 import Tone from 'tone';
-// import Scope2 from '../Scope2'
+import Scope2 from '../Scope2'
 import './style.css'
 
 export class Oscilator extends React.Component {
@@ -11,11 +11,13 @@ export class Oscilator extends React.Component {
   }
 
   render() {
-    console.log('this', this)
+    console.log('this', Tone.Master)
     return (
       <div className="output">
         <h4>Output</h4>
-        {/* <Scope2 input={osc} /> */}
+
+        <Scope2 input={Tone.Master} />
+
 
 
       </div>
