@@ -7,19 +7,29 @@ export class PatchBay extends React.Component {
   }
 
   change = (input, output) => {
-    console.log('input,', input)
-    console.log('output,', output)
-    input.node.connect(output.node)
+    const alreadyConnected = !!this.state.connections.find(c => c.input.name === input.name && c.output.name === output.name)
+
+    if (alreadyConnected) {
+      input.node.disconnect(output.node)
+      this.setState({
+        connections: this.state.connections.filter(c => !(c.input.name === input.name && c.output.name === output.name))
+      })
+
+    } else {
+      input.node.connect(output.node)
+      this.setState({
+        connections: [...this.state.connections,
+        { input, output }]
+      })
+    }
+
   }
   render() {
-    console.log('this.pr', this.props)
     return (
       <div className="patchbay">
         <h4>Patch Bay</h4>
-
         <table>
           <thead>
-
             <tr>
               <td>""</td>
               {
@@ -31,7 +41,6 @@ export class PatchBay extends React.Component {
             </tr>
           </thead>
           <tbody >
-
             {
               this.props.ins.map((i, ik) => (
                 <tr key={ik}>
@@ -47,7 +56,6 @@ export class PatchBay extends React.Component {
               ))
             }
           </tbody>
-
         </table>
       </div>
     )
