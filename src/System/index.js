@@ -1,18 +1,40 @@
 import React from 'react';
-// import Sequencer from '../Modules/Sequencer'
 import Oscilator from '../Modules/Oscilator'
-// import Scope from '../Modules/Scope'
+import PatchBay from '../Modules/PatchBay'
+import Output from '../Modules/Output'
+import './style.css'
 
+class System extends React.Component {
+  state = {
+    ins: [],
+    outs: []
+  }
 
-const System = () => (
-  <div className="system"> 
-      <React.Fragment>
+  inputRegister = (input) => {
+    this.setState({
+      ins: [...this.state.ins, input],
+    })
+  }
 
-        {/* <Sequencer /> */}
-        {/* <Scope /> */}
-        <Oscilator />
-      </React.Fragment>
-</div>
-)
+  outputRegister = (out) => {
+    this.setState({
+      outs: [...this.state.outs, out],
+    })
+  }
 
+  render() {
+    console.log('sysstem', this)
+
+    return (
+      <div className="system">
+        <React.Fragment>
+
+          <Oscilator inputRegister={this.inputRegister} />
+          <PatchBay ins={this.state.ins} outs={this.state.outs} />
+          <Output outputRegister={this.outputRegister} />
+        </React.Fragment>
+      </div>
+    )
+  }
+}
 export default System;

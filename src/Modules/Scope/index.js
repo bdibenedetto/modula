@@ -3,10 +3,6 @@ import Tone from 'tone'
 import Nexus from 'nexusui'
 
 export class Scope extends React.Component {
-  constructor() {
-    super()
-  }
-
   componentDidMount() {
     Nexus.context = Tone.context
     this.oscilloscope = new Nexus.Oscilloscope("#target",{
