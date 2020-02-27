@@ -3,26 +3,23 @@ import Tone from 'tone';
 import Scope2 from '../Scope2'
 import './style.css'
 
-export class Oscilator extends React.Component {
+export class Output extends React.Component {
   componentDidMount() {
     this.input = new Tone.Gain().toMaster()
-
-    this.props.outputRegister({ name: 'output', node: this.input })
+    this.props.outputRegister({ name: 'output', node: this.input, callback: () => this.input.toMaster() })
   }
 
   render() {
-    console.log('this', Tone.Master)
     return (
       <div className="output">
         <h4>Output</h4>
-
-        <Scope2 input={Tone.Master} />
-
-
-
+        {
+          this.input &&
+          <Scope2 input={this.input} />
+        }
       </div>
     )
   }
 }
 
-export default Oscilator;
+export default Output;

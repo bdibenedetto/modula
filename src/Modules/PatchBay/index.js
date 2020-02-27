@@ -25,6 +25,7 @@ export class PatchBay extends React.Component {
 
   }
   render() {
+    console.log('patch', this.props)
     return (
       <div className="patchbay">
         <h4>Patch Bay</h4>
@@ -45,13 +46,14 @@ export class PatchBay extends React.Component {
               this.props.ins.map((i, ik) => (
                 <tr key={ik}>
                   <td>{i.name}</td>
-                  {this.props.ins.map((_, k) => (
+                  {this.props.outs.map((_, k) => (
                     <td key={k}>
 
                       <input type="checkbox" onChange={() => this.change(i, this.props.outs[k])} />
                     </td>
 
                   ))}
+
                 </tr>
               ))
             }

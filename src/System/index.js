@@ -6,17 +6,17 @@ import './style.css'
 import Tone from 'tone'
 
 class System extends React.Component {
+
+
   constructor(props) {
     super(props)
+    this.state = {
+      ins: [],
+      outs: [],
+      loading: true
+    }
   }
 
-
-
-  state = {
-    ins: [],
-    outs: [],
-    loading: true
-  }
 
   componentDidMount() {
     setTimeout(this.start, 1000);
@@ -34,15 +34,15 @@ class System extends React.Component {
   }
 
   inputRegister = (input, callback) => {
-    this.setState({
-      ins: [...this.state.ins, input],
-    })
+    this.setState(state => ({
+      ins: state.ins.concat(input)
+    }))
   }
 
   outputRegister = (out, callback) => {
-    this.setState({
-      outs: [...this.state.outs, out],
-    })
+    this.setState(state => ({
+      outs: state.outs.concat(out)
+    }))
   }
 
   render() {
@@ -52,9 +52,10 @@ class System extends React.Component {
         <div className="system">
           <React.Fragment>
             <label>{Tone.context._context ? Tone.context._context.state : 'loading'}</label>
-            <Oscilator inputRegister={this.inputRegister} />
+            <Oscilator name="osc1" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} waveform="square" />
+            <Oscilator name="osc2" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} waveform="square" lfo />
             <PatchBay ins={this.state.ins} outs={this.state.outs} />
-            <Output outputRegister={this.outputRegister} />
+            <Output outputRegister={this.outputRegister.bind(this)} />
           </React.Fragment>
         </div>
       )
