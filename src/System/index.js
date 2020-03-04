@@ -1,5 +1,6 @@
 import React from 'react';
 import Oscilator from '../Modules/Oscilator'
+import Lfo from '../Modules/Lfo'
 import PatchBay from '../Modules/PatchBay'
 import Output from '../Modules/Output'
 import './style.css'
@@ -52,8 +53,18 @@ class System extends React.Component {
         <div className="system">
           <React.Fragment>
             <label>{Tone.context._context ? Tone.context._context.state : 'loading'}</label>
-            <Oscilator name="osc1" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} waveform="square" />
-            <Oscilator name="osc2" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} waveform="square" lfo />
+            <div className="osc_bank">
+              <Oscilator name="osc1" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
+              <Oscilator name="osc2" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
+              <Oscilator name="osc3" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
+            </div>
+            <div className="osc_bank">
+              <Lfo name="lfo1" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
+              <Lfo name="lfo2" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
+            </div>
+
+
+
             <PatchBay ins={this.state.ins} outs={this.state.outs} />
             <Output outputRegister={this.outputRegister.bind(this)} />
           </React.Fragment>

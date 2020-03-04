@@ -7,6 +7,9 @@ export class PatchBay extends React.Component {
   }
 
   change = (input, output) => {
+
+    console.log("input", input)
+    console.log("output", output)
     const alreadyConnected = !!this.state.connections.find(c => c.input.name === input.name && c.output.name === output.name)
 
     if (alreadyConnected) {
