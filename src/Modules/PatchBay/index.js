@@ -13,6 +13,9 @@ export class PatchBay extends React.Component {
     const alreadyConnected = !!this.state.connections.find(c => c.input.name === input.name && c.output.name === output.name)
 
     if (alreadyConnected) {
+      console.log('a', alreadyConnected)
+      console.log('input', input)
+      console.log('output', output)
       input.node.disconnect(output.node)
       this.setState({
         connections: this.state.connections.filter(c => !(c.input.name === input.name && c.output.name === output.name))

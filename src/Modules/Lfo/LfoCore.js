@@ -8,13 +8,13 @@ class LfoCore {
     this.osc2 = new Tone.LFO(0, 0, 5)
     this.osc2.type = "triangle"
 
-    this.frequencySignal = new Tone.Signal()
-    this.ampSignal = new Tone.Signal()
+    this.frequencySignal = new Tone.Signal(0)
+    this.ampSignal = new Tone.Gain(0)
 
-    this.volumeSignal1 = new Tone.Signal()
-    this.volumeSignal2 = new Tone.Signal()
+    this.volumeSignal1 = new Tone.Signal(0)
+    this.volumeSignal2 = new Tone.Signal(0)
 
-    this.fqSignal = new Tone.Signal(1)
+    this.fqSignal = new Tone.Signal(0)
 
 
     this.ampSignal.connect(this.fqSignal)
@@ -27,10 +27,15 @@ class LfoCore {
     this.volumeSignal2.connect(this.osc2.amplitude);
 
 
-    this.output = new Tone.Signal(1)
 
-    this.osc1.connect(this.output);
-    this.osc2.connect(this.output);
+
+
+    this.outputSignal = new Tone.Signal(0)
+    this.osc1.connect(this.outputSignal);
+    this.osc2.connect(this.outputSignal);
+    this.output = new Tone.Gain()
+    this.outputSignal.connect(this.output)
+
   }
 
   start = () => {

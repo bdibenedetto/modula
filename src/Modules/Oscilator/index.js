@@ -24,7 +24,7 @@ export class Oscilator extends React.Component {
         <div className="oscilator__panel__control" >
           <Slider
             label="Frequency"
-            min={0} max={100}
+            min={10} max={1000}
             step={0.001}
             direction="rtl"
             onChange={setFrequency}

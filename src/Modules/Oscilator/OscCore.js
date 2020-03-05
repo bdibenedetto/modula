@@ -6,12 +6,12 @@ class OscCore {
     this.osc2 = new Tone.OmniOscillator(1, "triangle")
 
     this.frequencySignal = new Tone.Signal()
-    this.ampSignal = new Tone.Signal()
+    this.ampSignal = new Tone.Gain()
 
     this.volumeSignal1 = new Tone.Signal()
     this.volumeSignal2 = new Tone.Signal()
 
-    this.fqSignal = new Tone.Gain(10)
+    this.fqSignal = new Tone.Gain()
 
 
     this.ampSignal.connect(this.fqSignal)
@@ -24,7 +24,7 @@ class OscCore {
     this.volumeSignal2.connect(this.osc2.volume);
 
 
-    this.output = new Tone.Gain(1)
+    this.output = new Tone.Gain()
     this.osc1.connect(this.output);
     this.osc2.connect(this.output);
   }
