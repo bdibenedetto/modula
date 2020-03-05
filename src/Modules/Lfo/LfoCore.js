@@ -26,10 +26,6 @@ class LfoCore {
     this.volumeSignal1.connect(this.osc1.amplitude);
     this.volumeSignal2.connect(this.osc2.amplitude);
 
-
-
-
-
     this.outputSignal = new Tone.Signal(0)
     this.osc1.connect(this.outputSignal);
     this.osc2.connect(this.outputSignal);

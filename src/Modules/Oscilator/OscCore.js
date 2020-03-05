@@ -13,7 +13,6 @@ class OscCore {
 
     this.fqSignal = new Tone.Gain()
 
-
     this.ampSignal.connect(this.fqSignal)
     this.frequencySignal.connect(this.fqSignal);
 
@@ -22,7 +21,6 @@ class OscCore {
 
     this.volumeSignal1.connect(this.osc1.volume);
     this.volumeSignal2.connect(this.osc2.volume);
-
 
     this.output = new Tone.Gain()
     this.osc1.connect(this.output);

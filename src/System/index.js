@@ -1,6 +1,7 @@
 import React from 'react';
 import Oscilator from '../Modules/Oscilator'
 import Lfo from '../Modules/Lfo'
+import Filter from '../Modules/Filter'
 import PatchBay from '../Modules/PatchBay'
 import Output from '../Modules/Output'
 import './style.css'
@@ -62,6 +63,7 @@ class System extends React.Component {
               <Lfo name="lfo1" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
               <Lfo name="lfo2" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
             </div>
+            <Filter name="filter" inputRegister={this.inputRegister.bind(this)} outputRegister={this.outputRegister.bind(this)} />
 
 
 
